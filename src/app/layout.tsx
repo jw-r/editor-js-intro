@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(fontSans.variable)}>
-        <div className="relative m-auto min-h-screen max-w-[800px] overflow-hidden shadow-lg shadow-slate-300">
+        <div className="relative m-auto h-screen max-w-[800px] shadow-lg shadow-slate-300">
           {children}
         </div>
       </body>
