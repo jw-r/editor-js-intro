@@ -13,13 +13,13 @@ export default function Home() {
         <Link href="/block-note">
           <Button className="w-full">block-note Editor</Button>
         </Link>
+        <Link href="/remirror">
+          <Button className="w-full bg-green-400 hover:bg-green-500 text-black">
+            re-mirror Editor
+          </Button>
+        </Link>
         <Link href="/content-editable">
           <Button className="w-full">content-editable Editor</Button>
-        </Link>
-        <Link href="#">
-          <Button className="w-full" disabled>
-            prose-mirror Editor
-          </Button>
         </Link>
       </div>
     </div>

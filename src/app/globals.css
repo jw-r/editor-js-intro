@@ -78,3 +78,11 @@
 #__endic_crx__ {
   display: none !important;
 }
+
+.revert-tailwind {
+  all: initial;
+}
+
+.revert-tailwind > * {
+  all: revert;
+}
