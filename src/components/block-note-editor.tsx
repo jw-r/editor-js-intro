@@ -98,7 +98,7 @@ const schema = BlockNoteSchema.create({
   },
 });
 
-export default function Editor() {
+export default function BlockNoteEditor() {
   const editor = useCreateBlockNote({
     schema,
     initialContent,
