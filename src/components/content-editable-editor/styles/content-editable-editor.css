@@ -1,0 +1,4 @@
+div[data-is-empty-and-focused='true']::after {
+  content: '/ 를 입력해보세요.';
+  opacity: 0.4;
+}
