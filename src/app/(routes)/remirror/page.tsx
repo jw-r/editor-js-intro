@@ -13,7 +13,6 @@ export default function Remirror() {
   return (
     <div>
       <RemirrorEditor />
-      <div style={{ width: 'full', height: '10px', backgroundColor: 'blue', padding: '10px' }} />
       {/* <TutorialEditor /> */}
     </div>
   )

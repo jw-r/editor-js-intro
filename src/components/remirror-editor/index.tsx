@@ -1,5 +1,18 @@
-import { useRemirror } from '@remirror/react'
+import 'remirror/styles/all.css'
+
+import {
+  EditorComponent,
+  Remirror,
+  useActive,
+  useChainedCommands,
+  useCommands,
+  useHelpers,
+  useKeymap,
+  useRemirror,
+} from '@remirror/react'
 import { BoldExtension, CalloutExtension, ItalicExtension } from 'remirror/extensions'
+import { useCallback } from 'react'
+import { KeyBindingCommandFunction } from 'remirror'
 
 // const remirrorJsonFormStorage = {
 //   type: 'doc',
@@ -15,8 +28,25 @@ import { BoldExtension, CalloutExtension, ItalicExtension } from 'remirror/exten
 //   ],
 // }
 
+const hooks = [
+  () => {
+    const { getJSON } = useHelpers()
+
+    const handleSaveShortcut: KeyBindingCommandFunction = useCallback(
+      ({ state }) => {
+        console.log(`Save to backend: ${JSON.stringify(getJSON(state))}`)
+
+        return true
+      },
+      [getJSON]
+    )
+
+    useKeymap('Mod-s', handleSaveShortcut)
+  },
+]
+
 export default function MyEditor() {
-  const { manager } = useRemirror({
+  const { manager, state } = useRemirror({
     extensions: () => [
       new BoldExtension(),
       new ItalicExtension(),
@@ -30,5 +60,28 @@ export default function MyEditor() {
     stringHandler: 'html',
   })
 
-  return <div>myeditor</div>
+  return (
+    <div className="remirror-theme">
+      <Remirror manager={manager} initialContent={state} hooks={hooks}>
+        <EditorComponent />
+        <Menu />
+      </Remirror>
+    </div>
+  )
+}
+
+const Menu = () => {
+  const { toggleBold, focus } = useCommands()
+
+  return (
+    <button
+      onClick={() => {
+        toggleBold()
+        focus()
+      }}
+      disabled={toggleBold.enabled() === false}
+    >
+      B
+    </button>
+  )
 }
